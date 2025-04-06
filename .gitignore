@@ -7,6 +7,7 @@ catboost_info/
 mlruns/
 uploaded_datasets/
 data/
+models/
 
 
 # Byte-compiled / optimized / DLL files
