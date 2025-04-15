@@ -1,0 +1,659 @@
+Feature,Importance
+B_10_Area under the curve,1
+B_4_Sum absolute diff,1
+B_5_Area under the curve,1
+B_5_Mean absolute diff,1
+B_5_Mean diff,1
+B_5_Median absolute diff,1
+R_3_Mean absolute diff,1
+B_7_Area under the curve,1
+B_7_Mean diff,1
+R_3_Area under the curve,1
+B_9_Area under the curve,1
+R_2_Slope,1
+B_9_Mean diff,1
+B_9_Median diff,1
+B_9_Slope,1
+B_9_Sum absolute diff,1
+R_2_Mean diff,1
+D_102_Area under the curve,1
+B_4_Slope,1
+D_102_Median diff,1
+B_4_Median diff,1
+B_4_Mean absolute diff,1
+B_23_Slope,1
+B_24_Sum absolute diff,1
+B_28_Mean diff,1
+B_28_Median diff,1
+S_11_Area under the curve,1
+R_6_Mean diff,1
+B_37_Area under the curve,1
+B_37_Mean diff,1
+B_37_Median diff,1
+R_5_Slope,1
+B_37_Positive turning points,1
+B_37_Zero crossing rate,1
+B_40_Area under the curve,1
+R_5_Mean diff,1
+B_40_Mean absolute diff,1
+B_4_Area under the curve,1
+B_4_Centroid,1
+B_4_Mean diff,1
+R_2_Area under the curve,1
+R_1_Slope,1
+D_126_1.0_Area under the curve,1
+P_4_Area under the curve,1
+D_75_Signal distance,1
+D_60_Area under the curve,1
+D_75_Mean diff,1
+D_75_Mean absolute diff,1
+D_75_Area under the curve,1
+D_65_Sum absolute diff,1
+D_65_Slope,1
+D_65_Signal distance,1
+D_63_CL_Slope,1
+D_65_Mean diff,1
+D_65_Mean absolute diff,1
+D_63_CO_Area under the curve,1
+D_63_CO_Centroid,1
+D_65_Area under the curve,1
+D_63_CO_Mean diff,1
+D_63_CR_Centroid,1
+P_4_Sum absolute diff,1
+R_10_Mean absolute diff,1
+D_51_Area under the curve,1
+R_10_Slope,1
+R_1_Mean diff,1
+R_1_Mean absolute diff,1
+R_1_Area under the curve,1
+R_16_Slope,1
+D_133_Area under the curve,1
+R_16_Mean absolute diff,1
+D_133_Signal distance,1
+R_16_Area under the curve,1
+B_23_Positive turning points,1
+D_144_Autocorrelation,1
+D_144_Mean diff,1
+D_39_Area under the curve,1
+D_39_Centroid,1
+D_39_Mean diff,1
+D_39_Signal distance,1
+D_39_Slope,1
+D_47_Area under the curve,1
+R_11_Area under the curve,1
+D_144_Mean absolute diff,1
+B_23_Mean diff,1
+B_5_Slope,1
+D_63_CO_Slope,1
+S_15_Area under the curve,1
+S_26_Sum absolute diff,1
+B_18_Area under the curve,1
+S_26_Mean absolute diff,1
+B_18_Mean diff,1
+S_5_Signal distance,1
+B_14_Mean diff,1
+B_11_Mean diff,1
+S_8_Area under the curve,1
+B_11_Area under the curve,1
+S_8_Centroid,1
+B_1_Area under the curve,1
+B_1_Mean diff,1
+S_26_Area under the curve,1
+S_5_Area under the curve,1
+B_4_Positive turning points,2
+B_12_Mean diff,2
+D_133_Mean absolute diff,2
+R_12_Mean absolute diff,2
+D_144_Slope,2
+R_11_Sum absolute diff,2
+B_11_Positive turning points,2
+P_4_Slope,2
+D_75_Sum absolute diff,2
+B_10_Sum absolute diff,2
+B_10_Median absolute diff,2
+R_2_Mean absolute diff,2
+B_1_Positive turning points,2
+D_102_Sum absolute diff,2
+S_5_Mean absolute diff,3
+D_133_Sum absolute diff,3
+D_39_Mean absolute diff,3
+S_5_Sum absolute diff,3
+D_63_CL_Centroid,5
+B_23_Autocorrelation,7
+D_63_CL_Negative turning points,7
+R_12_Zero crossing rate,7
+P_4_Autocorrelation,9
+D_63_CL_Mean diff,11
+B_1_Slope,11
+R_16_Median absolute diff,13
+B_37_Sum absolute diff,13
+D_144_Sum absolute diff,14
+D_63_CR_Mean absolute diff,15
+S_5_Mean diff,16
+B_24_Autocorrelation,17
+S_26_Signal distance,19
+B_1_Centroid,19
+D_126_1.0_Signal distance,20
+B_1_Zero crossing rate,21
+P_4_Signal distance,23
+B_24_Mean absolute diff,23
+B_18_Centroid,24
+B_14_Area under the curve,25
+D_126_1.0_Centroid,26
+B_23_Area under the curve,27
+D_133_Centroid,29
+B_28_Positive turning points,29
+S_13_Mean diff,30
+B_4_Signal distance,31
+S_15_Centroid,33
+S_8_Mean absolute diff,33
+D_102_Positive turning points,33
+P_4_Mean diff,35
+B_10_Mean diff,36
+B_40_Sum absolute diff,37
+D_75_Slope,38
+R_11_Slope,39
+R_10_Centroid,40
+B_5_Centroid,42
+D_47_Centroid,42
+R_3_Sum absolute diff,44
+P_4_Centroid,44
+B_28_Area under the curve,45
+D_60_Centroid,47
+R_1_Centroid,47
+B_9_Signal distance,47
+B_28_Centroid,49
+D_133_Mean diff,51
+B_7_Positive turning points,51
+B_9_Mean absolute diff,52
+D_126_1.0_Mean diff,53
+B_24_Mean diff,54
+D_60_Mean diff,56
+S_13_Signal distance,56
+B_14_Slope,57
+R_16_Mean diff,58
+D_51_Autocorrelation,59
+S_13_Sum absolute diff,60
+B_12_Area under the curve,61
+B_40_Signal distance,62
+B_37_Negative turning points,63
+D_60_Sum absolute diff,64
+R_2_Sum absolute diff,65
+S_8_Sum absolute diff,66
+B_10_Mean absolute diff,67
+B_1_Signal distance,68
+S_15_Signal distance,69
+B_10_Signal distance,70
+R_11_Mean diff,71
+B_18_Sum absolute diff,72
+S_13_Mean absolute diff,74
+S_8_Mean diff,74
+B_9_Median absolute diff,75
+R_3_Median absolute diff,76
+D_58_Signal distance,77
+B_7_Centroid,79
+D_60_Median absolute diff,79
+B_12_Centroid,80
+S_5_Centroid,81
+R_11_Signal distance,82
+B_11_Centroid,83
+B_5_Sum absolute diff,84
+D_71_Mean absolute diff,85
+B_23_Centroid,86
+D_58_Area under the curve,87
+R_12_Centroid,88
+S_15_Slope,89
+D_71_Median absolute diff,90
+D_102_Mean diff,91
+D_58_Mean absolute diff,93
+D_58_Slope,93
+R_3_Mean diff,93
+B_7_Slope,95
+D_75_Positive turning points,96
+B_14_Positive turning points,97
+B_9_Negative turning points,98
+D_133_Slope,99
+D_39_Sum absolute diff,100
+S_11_Zero crossing rate,101
+B_10_Autocorrelation,103
+B_12_Negative turning points,103
+D_63_CR_Area under the curve,104
+B_18_Slope,105
+S_15_Mean diff,106
+B_4_Median absolute diff,107
+B_7_Autocorrelation,108
+B_14_Centroid,109
+S_26_Median absolute diff,110
+R_11_Positive turning points,111
+R_1_Sum absolute diff,112
+B_37_Slope,113
+S_13_Area under the curve,115
+B_23_Median diff,115
+D_58_Sum absolute diff,116
+B_28_Mean absolute diff,117
+S_5_Median absolute diff,119
+B_40_Median diff,119
+B_9_Centroid,120
+S_13_Centroid,121
+R_5_Area under the curve,122
+B_40_Negative turning points,123
+B_24_Signal distance,124
+D_75_Centroid,125
+D_144_Median absolute diff,127
+D_133_Positive turning points,127
+S_11_Mean absolute diff,128
+D_144_Median diff,130
+S_13_Slope,130
+R_16_Signal distance,132
+B_18_Signal distance,132
+D_71_Mean diff,133
+D_63_CR_Slope,135
+B_28_Negative turning points,135
+B_40_Mean diff,136
+D_60_Signal distance,137
+B_37_Mean absolute diff,138
+B_10_Slope,139
+B_7_Sum absolute diff,140
+R_11_Median absolute diff,142
+B_37_Signal distance,142
+R_2_Median diff,144
+B_7_Mean absolute diff,144
+B_37_Median absolute diff,145
+B_7_Negative turning points,146
+B_12_Slope,148
+B_12_Median absolute diff,148
+B_28_Signal distance,149
+S_11_Sum absolute diff,151
+D_133_Autocorrelation,151
+S_5_Median diff,152
+D_65_Centroid,153
+B_1_Mean absolute diff,155
+R_5_Signal distance,155
+S_11_Median absolute diff,156
+D_47_Mean diff,157
+B_1_Median diff,158
+B_18_Autocorrelation,159
+D_51_Sum absolute diff,161
+B_14_Sum absolute diff,161
+B_11_Signal distance,163
+B_14_Signal distance,163
+D_144_Signal distance,165
+B_37_Centroid,165
+S_15_Sum absolute diff,167
+D_47_Slope,167
+B_9_Positive turning points,169
+B_1_Sum absolute diff,169
+B_28_Sum absolute diff,170
+R_10_Mean diff,171
+B_14_Median absolute diff,172
+B_14_Mean absolute diff,174
+D_133_Median absolute diff,174
+D_102_Negative turning points,175
+D_47_Signal distance,176
+R_11_Mean absolute diff,178
+B_7_Signal distance,178
+D_71_Area under the curve,180
+R_3_Slope,180
+B_40_Slope,181
+R_3_Centroid,182
+B_12_Sum absolute diff,183
+R_11_Centroid,184
+S_13_Autocorrelation,186
+S_13_Median absolute diff,186
+D_102_Centroid,187
+B_11_Negative turning points,189
+B_12_Signal distance,189
+R_3_Positive turning points,191
+R_12_Sum absolute diff,191
+D_58_Median diff,192
+B_11_Slope,193
+S_5_Slope,195
+D_126_1.0_Slope,195
+B_40_Positive turning points,197
+D_47_Negative turning points,197
+R_11_Negative turning points,199
+D_133_Median diff,199
+B_28_Median absolute diff,199
+B_10_Median diff,201
+R_4_Area under the curve,202
+B_1_Median absolute diff,203
+S_8_Slope,204
+B_24_Centroid,205
+S_5_Negative turning points,206
+D_47_Mean absolute diff,208
+S_8_Median diff,208
+B_18_Median diff,209
+D_144_Centroid,210
+D_65_Median absolute diff,211
+D_58_Centroid,213
+S_11_Signal distance,213
+D_39_Median absolute diff,214
+R_1_Median diff,216
+R_10_Median diff,216
+D_102_Median absolute diff,217
+D_75_Median absolute diff,218
+R_5_Centroid,219
+S_13_Median diff,220
+R_3_Autocorrelation,222
+B_5_Negative turning points,222
+B_12_Median diff,224
+D_71_Sum absolute diff,224
+R_6_Median absolute diff,224
+P_4_Median diff,227
+S_11_Mean diff,227
+B_11_Sum absolute diff,227
+B_5_Autocorrelation,229
+B_7_Median diff,231
+D_60_Slope,231
+D_51_Mean diff,232
+R_12_Area under the curve,233
+R_3_Signal distance,235
+B_23_Sum absolute diff,235
+R_10_Sum absolute diff,236
+D_60_Mean absolute diff,238
+R_10_Area under the curve,238
+D_102_Signal distance,240
+R_16_Centroid,240
+R_4_Median diff,241
+B_11_Median diff,243
+S_26_Slope,243
+D_102_Mean absolute diff,244
+R_6_Mean absolute diff,245
+D_60_Median diff,246
+S_15_Median absolute diff,247
+R_6_Signal distance,249
+R_5_Median absolute diff,249
+S_8_Median absolute diff,249
+B_10_Centroid,252
+R_16_Median diff,252
+B_12_Mean absolute diff,254
+S_8_Signal distance,254
+D_51_Mean absolute diff,255
+B_40_Centroid,257
+B_14_Median diff,257
+R_12_Median diff,259
+S_15_Mean absolute diff,259
+R_2_Signal distance,261
+R_3_Median diff,261
+D_58_Median absolute diff,262
+S_8_Autocorrelation,264
+R_10_Median absolute diff,264
+D_71_Signal distance,266
+S_11_Centroid,266
+D_71_Centroid,267
+D_71_Median diff,268
+R_10_Signal distance,269
+B_23_Median absolute diff,270
+R_12_Mean diff,272
+D_63_CL_Area under the curve,272
+R_4_Sum absolute diff,273
+R_1_Signal distance,274
+D_75_Median diff,276
+R_6_Sum absolute diff,276
+D_75_Autocorrelation,277
+D_102_Slope,278
+S_26_Centroid,279
+D_102_Autocorrelation,281
+B_18_Median absolute diff,281
+S_26_Mean diff,281
+B_40_Median absolute diff,283
+B_24_Area under the curve,285
+R_2_Median absolute diff,285
+B_23_Mean absolute diff,286
+R_4_Median absolute diff,287
+S_11_Slope,289
+D_51_Slope,289
+R_5_Mean absolute diff,290
+R_6_Centroid,291
+P_4_Median absolute diff,293
+B_24_Slope,293
+R_2_Centroid,295
+S_5_Positive turning points,295
+R_4_Slope,296
+R_5_Median diff,298
+D_144_Area under the curve,298
+B_28_Slope,300
+D_39_Median diff,300
+D_51_Median diff,301
+R_1_Median absolute diff,303
+D_63_CO_Mean absolute diff,303
+D_47_Median diff,304
+R_1_Positive turning points,306
+R_4_Centroid,306
+S_15_Median diff,307
+S_15_Autocorrelation,309
+D_71_Slope,309
+B_5_Median diff,311
+R_5_Positive turning points,311
+P_4_Mean absolute diff,312
+B_11_Median absolute diff,313
+D_58_Negative turning points,314
+S_8_Positive turning points,315
+D_71_Positive turning points,316
+B_24_Median diff,317
+D_39_Positive turning points,318
+R_16_Sum absolute diff,319
+R_11_Median diff,321
+S_11_Median diff,321
+R_12_Slope,322
+S_15_Positive turning points,323
+B_18_Mean absolute diff,325
+R_12_Positive turning points,325
+D_47_Positive turning points,326
+D_51_Signal distance,327
+B_24_Median absolute diff,328
+D_51_Median absolute diff,329
+S_26_Positive turning points,330
+B_11_Mean absolute diff,331
+R_6_Area under the curve,332
+D_58_Mean diff,333
+D_65_Median diff,335
+R_12_Median absolute diff,335
+R_4_Mean absolute diff,337
+B_7_Median absolute diff,337
+R_6_Slope,338
+R_6_Median diff,339
+B_28_Autocorrelation,341
+B_1_Negative turning points,341
+R_10_Positive turning points,341
+R_12_Negative turning points,344
+S_8_Negative turning points,344
+D_47_Sum absolute diff,345
+B_18_Positive turning points,346
+B_10_Negative turning points,347
+R_4_Signal distance,348
+D_51_Centroid,349
+S_26_Median diff,350
+R_4_Positive turning points,352
+B_37_Autocorrelation,352
+R_4_Mean diff,353
+S_11_Autocorrelation,354
+D_60_Positive turning points,355
+R_2_Negative turning points,357
+R_12_Signal distance,357
+B_5_Signal distance,357
+B_12_Autocorrelation,360
+D_133_Negative turning points,360
+R_5_Sum absolute diff,361
+B_18_Negative turning points,362
+R_16_Negative turning points,364
+D_47_Median absolute diff,364
+R_1_Autocorrelation,365
+B_23_Signal distance,366
+B_23_Negative turning points,367
+R_4_Negative turning points,368
+R_5_Negative turning points,369
+D_51_Negative turning points,370
+D_58_Autocorrelation,371
+R_16_Positive turning points,372
+R_3_Negative turning points,373
+D_39_Autocorrelation,374
+D_39_Negative turning points,376
+B_10_Positive turning points,376
+P_4_Positive turning points,377
+D_51_Positive turning points,378
+D_60_Autocorrelation,379
+R_10_Negative turning points,380
+D_58_Positive turning points,381
+S_15_Negative turning points,382
+D_47_Autocorrelation,383
+B_24_Negative turning points,384
+S_11_Positive turning points,385
+S_13_Negative turning points,386
+D_75_Negative turning points,387
+D_60_Negative turning points,388
+S_5_Autocorrelation,389
+B_14_Autocorrelation,390
+S_11_Negative turning points,391
+D_63_CL_Autocorrelation,392
+D_65_Negative turning points,393
+R_6_Positive turning points,394
+S_13_Positive turning points,395
+B_24_Positive turning points,396
+R_6_Negative turning points,397
+D_144_Positive turning points,399
+B_11_Autocorrelation,399
+D_71_Autocorrelation,400
+S_26_Negative turning points,401
+R_2_Positive turning points,403
+B_14_Negative turning points,403
+R_1_Negative turning points,405
+B_40_Autocorrelation,405
+D_144_Negative turning points,407
+S_26_Autocorrelation,407
+D_65_Positive turning points,409
+B_4_Negative turning points,409
+B_12_Positive turning points,410
+B_9_Autocorrelation,412
+R_6_Autocorrelation,412
+B_4_Autocorrelation,413
+B_7_Zero crossing rate,414
+D_71_Negative turning points,415
+D_63_CR_Autocorrelation,417
+R_16_Autocorrelation,417
+B_5_Positive turning points,417
+P_4_Negative turning points,419
+D_126_1.0_Mean absolute diff,420
+B_1_Autocorrelation,421
+R_5_Autocorrelation,422
+D_63_CL_Mean absolute diff,423
+B_10_Zero crossing rate,424
+R_10_Autocorrelation,425
+D_133_Zero crossing rate,426
+D_63_CL_Signal distance,427
+D_65_Autocorrelation,430
+R_2_Autocorrelation,430
+R_4_Autocorrelation,430
+R_12_Autocorrelation,430
+D_126_1.0_Autocorrelation,430
+D_63_CO_Signal distance,434
+D_47_Zero crossing rate,434
+S_15_Zero crossing rate,437
+D_63_CR_Signal distance,437
+D_144_Zero crossing rate,437
+D_63_CO_Autocorrelation,437
+R_11_Autocorrelation,437
+B_14_Neighbourhood peaks,492
+B_24_Zero crossing rate,492
+B_14_Zero crossing rate,492
+B_11_Neighbourhood peaks,492
+B_24_Neighbourhood peaks,492
+S_5_Zero crossing rate,492
+B_12_Zero crossing rate,492
+S_13_Zero crossing rate,492
+S_13_Neighbourhood peaks,492
+S_26_Zero crossing rate,492
+B_23_Neighbourhood peaks,492
+B_10_Neighbourhood peaks,492
+B_18_Zero crossing rate,492
+S_15_Neighbourhood peaks,492
+B_23_Zero crossing rate,492
+B_18_Neighbourhood peaks,492
+B_1_Neighbourhood peaks,492
+B_12_Neighbourhood peaks,492
+B_11_Zero crossing rate,492
+S_8_Neighbourhood peaks,492
+S_5_Neighbourhood peaks,492
+S_11_Neighbourhood peaks,492
+S_26_Neighbourhood peaks,492
+D_63_CO_Positive turning points,492
+R_6_Zero crossing rate,492
+D_65_Zero crossing rate,492
+D_63_CL_Median absolute diff,492
+D_71_Neighbourhood peaks,492
+D_60_Zero crossing rate,492
+D_71_Zero crossing rate,492
+D_60_Neighbourhood peaks,492
+D_58_Zero crossing rate,492
+D_63_CL_Median diff,492
+D_75_Neighbourhood peaks,492
+D_75_Zero crossing rate,492
+D_51_Zero crossing rate,492
+P_4_Neighbourhood peaks,492
+D_51_Neighbourhood peaks,492
+P_4_Zero crossing rate,492
+R_10_Neighbourhood peaks,492
+R_10_Zero crossing rate,492
+D_58_Neighbourhood peaks,492
+D_47_Neighbourhood peaks,492
+D_63_CL_Neighbourhood peaks,492
+D_65_Neighbourhood peaks,492
+D_63_CO_Sum absolute diff,492
+D_63_CO_Zero crossing rate,492
+D_63_CO_Neighbourhood peaks,492
+D_63_CO_Negative turning points,492
+D_63_CO_Median diff,492
+D_63_CR_Mean diff,492
+D_63_CR_Median absolute diff,492
+D_63_CL_Positive turning points,492
+D_63_CR_Median diff,492
+D_63_CR_Neighbourhood peaks,492
+D_63_CR_Positive turning points,492
+D_63_CO_Median absolute diff,492
+D_63_CR_Sum absolute diff,492
+D_63_CR_Zero crossing rate,492
+D_63_CL_Zero crossing rate,492
+D_63_CL_Sum absolute diff,492
+D_63_CR_Negative turning points,492
+D_39_Zero crossing rate,492
+R_11_Neighbourhood peaks,492
+D_39_Neighbourhood peaks,492
+B_7_Neighbourhood peaks,492
+B_5_Zero crossing rate,492
+B_5_Neighbourhood peaks,492
+R_3_Neighbourhood peaks,492
+B_4_Zero crossing rate,492
+B_4_Neighbourhood peaks,492
+R_3_Zero crossing rate,492
+R_2_Zero crossing rate,492
+B_40_Zero crossing rate,492
+R_4_Zero crossing rate,492
+B_40_Neighbourhood peaks,492
+R_5_Neighbourhood peaks,492
+B_37_Neighbourhood peaks,492
+R_5_Zero crossing rate,492
+B_28_Zero crossing rate,492
+R_6_Neighbourhood peaks,492
+R_4_Neighbourhood peaks,492
+R_2_Neighbourhood peaks,492
+B_9_Neighbourhood peaks,492
+B_9_Zero crossing rate,492
+R_11_Zero crossing rate,492
+D_144_Neighbourhood peaks,492
+R_12_Neighbourhood peaks,492
+D_133_Neighbourhood peaks,492
+D_126_1.0_Zero crossing rate,492
+D_126_1.0_Sum absolute diff,492
+R_16_Neighbourhood peaks,492
+D_126_1.0_Positive turning points,492
+D_126_1.0_Neighbourhood peaks,492
+R_16_Zero crossing rate,492
+D_126_1.0_Negative turning points,492
+D_126_1.0_Median diff,492
+D_126_1.0_Median absolute diff,492
+R_1_Neighbourhood peaks,492
+D_102_Zero crossing rate,492
+R_1_Zero crossing rate,492
+D_102_Neighbourhood peaks,492
+B_28_Neighbourhood peaks,492
+S_8_Zero crossing rate,492
