@@ -3,6 +3,7 @@ import numpy as np
 from sklearn.preprocessing import OneHotEncoder
 from sklearn.linear_model import LinearRegression
 from joblib import Parallel, delayed
+from pandarallel import pandarallel
 import tqdm
 
 class TimeSeriesFeatureCreation:
@@ -68,17 +69,14 @@ class TimeSeriesFeatureCreation:
         self.span = span
 
     def _create_lag_features(self, df, feature_name):
-        '''Creates lag features for a given feature.'''
+        '''Creates lag features for a given feature and returns them in a new DataFrame.'''
+        new_features_df = pd.DataFrame(index=df.index) # Ensure index alignment
         if self.verbose:
             print(f'\tCreating lag features for {feature_name}')
-        # Group once outside the loop
         grouped_data = df.groupby(self.id_col)[feature_name]
-
-        # Calculate lag 1 through num_lags
-        # Calling .shift() repeatedly is generally efficient in pandas
         for i in range(1, self.num_lags + 1):
-            df[f'lag_{feature_name}_{i}'] = grouped_data.shift(i)
-        return df
+            new_features_df[f'lag_{feature_name}_{i}'] = grouped_data.shift(i)
+        return new_features_df
     
     def _groupby_df(self, df):
         '''Groups the dataframe by the given feature list.'''
@@ -88,79 +86,65 @@ class TimeSeriesFeatureCreation:
         
     def _create_rolling_window_features_optimized(self, df, feature_name):
         """
-        Creates rolling window features for a given feature (optimized version).
-
-        Args:
-            df (pd.DataFrame): The input DataFrame.
-            feature_name (str): The name of the column to create rolling features for.
-
-        Returns:
-            pd.DataFrame: The DataFrame with added rolling window features.
+        Creates rolling window features (optimized) and returns them in a new DataFrame.
         """
+        new_features_df = pd.DataFrame(index=df.index) # Ensure index alignment
         if not self.return_rolling:
-            return df # Return early if rolling features are not requested
+            return new_features_df # Return empty DataFrame if not requested
 
         if self.verbose:
             print(f'\tCreating rolling window features for {feature_name}')
 
-        # Group by the identifier column
         grouped_data = df.groupby(self.id_col)[feature_name]
 
-        # Calculate rolling mean if requested
         if self.use_non_lag:
             mean_col_name = f'rolling_mean_{feature_name}_{self.rolling_window_size}'
-            # Apply rolling mean directly on the grouped series
-            # Using min_periods=1 ensures that the calculation happens even if the window is not full
-            # (e.g., at the beginning of each group)
-            df[mean_col_name] = grouped_data.rolling(
+            new_features_df[mean_col_name] = grouped_data.rolling(
                 window=self.rolling_window_size, min_periods=1
-            ).mean().reset_index(level=0, drop=True) # reset_index aligns result back to original df index
+            ).mean().reset_index(level=0, drop=True)
 
-            # Calculate rolling standard deviation if requested
             if self.std_dev:
                 std_col_name = f'rolling_std_{feature_name}_{self.rolling_window_size}'
-                # Apply rolling std directly on the grouped series
-                df[std_col_name] = grouped_data.rolling(
-                    window=self.rolling_window_size, min_periods=1 # min_periods=1 similar to mean
-                ).std().reset_index(level=0, drop=True) # reset_index aligns result back to original df index
+                new_features_df[std_col_name] = grouped_data.rolling(
+                    window=self.rolling_window_size, min_periods=1
+                ).std().reset_index(level=0, drop=True)
 
-        return df
+        return new_features_df
 
     def _create_cumulative_features(self, df, feature_name):
-        '''Creates cumulative features for a given feature.'''
+        '''Creates cumulative features and returns them in a new DataFrame.'''
+        new_features_df = pd.DataFrame(index=df.index) # Ensure index alignment
         if self.use_non_lag:
             if self.verbose:
                 print(f'\tCreating cumulative features for {feature_name}')
-            # Group once outside the conditions
             grouped_data = df.groupby(self.id_col)[feature_name]
 
             if self.cum_sum:
-                df[f'cumsum_{feature_name}'] = grouped_data.cumsum()
+                new_features_df[f'cumsum_{feature_name}'] = grouped_data.cumsum()
 
             if self.cum_mean:
-                # Calculate cumsum and count
                 cumulative_sum = grouped_data.cumsum()
-                # cumcount starts at 0, add 1 for mean calculation (count of elements up to current row)
                 cumulative_count = grouped_data.cumcount() + 1
-                df[f'cummean_{feature_name}'] = cumulative_sum / cumulative_count
-                # Optional: Handle potential division by zero if the first element could be NaN/missing
-                # df[f'cummean_{feature_name}'] = df[f'cummean_{feature_name}'].fillna(0) # Or some other appropriate value
+                new_features_df[f'cummean_{feature_name}'] = cumulative_sum / cumulative_count
+                # Optional: Handle potential division by zero
+                # new_features_df[f'cummean_{feature_name}'] = new_features_df[f'cummean_{feature_name}'].fillna(0)
 
-        return df
+        return new_features_df
 
     def _create_expanding_window_features(self, df, feature_name):
-        '''Creates expanding window features for a given feature.'''
+        '''Creates expanding window features and returns them in a new DataFrame.'''
+        new_features_df = pd.DataFrame(index=df.index) # Ensure index alignment
         if self.verbose:
             print(f'\tCreating expanding window features for {feature_name}')
         if self.use_non_lag:
             grouped_data = df.groupby(self.id_col)[feature_name]
 
             if self.return_min:
-                df[f'expanding_min_{feature_name}'] = grouped_data.cummin()
+                new_features_df[f'expanding_min_{feature_name}'] = grouped_data.cummin()
 
             if self.return_max:
-                df[f'expanding_max_{feature_name}'] = grouped_data.cummax()
-        return df
+                new_features_df[f'expanding_max_{feature_name}'] = grouped_data.cummax()
+        return new_features_df
 
     def _create_time_differencing(self, df, feature_name):
         if self.verbose:
@@ -179,37 +163,26 @@ class TimeSeriesFeatureCreation:
     
     def _create_time_differencing_optimized(self, df, feature_name):
         """
-        Creates time difference features for a given feature (optimized version).
-
-        Args:
-            df (pd.DataFrame): The input DataFrame. Assumed to be sorted by id_col and time/sequence.
-            feature_name (str): The name of the column to create difference features for.
-
-        Returns:
-            pd.DataFrame: The DataFrame with added difference features.
+        Creates time difference features (optimized) and returns them in a new DataFrame.
         """
+        new_features_df = pd.DataFrame(index=df.index) # Ensure index alignment
         if not self.return_diff:
-             # Check flags before proceeding
-            return df
+             return new_features_df # Return empty DataFrame if not requested
 
         if self.verbose:
             print(f'\tCreating time differencing features for {feature_name}')
 
-        # Group once outside the conditions/loop
         grouped_data = df.groupby(self.id_col)[feature_name]
 
         if self.create_2_diff:
-            # Calculate only diff 1 and diff N
-            df[f'diff_{feature_name}_1'] = grouped_data.diff(1)
-            if self.time_window_size > 1: # Avoid creating diff_1 twice if time_window_size is 1
-                 df[f'diff_{feature_name}_{self.time_window_size}'] = grouped_data.diff(self.time_window_size)
+            new_features_df[f'diff_{feature_name}_1'] = grouped_data.diff(1)
+            if self.time_window_size > 1:
+                 new_features_df[f'diff_{feature_name}_{self.time_window_size}'] = grouped_data.diff(self.time_window_size)
         else:
-            # Calculate diff 1 through N
-            # Calling .diff() repeatedly is generally efficient in pandas
             for i in range(1, self.time_window_size + 1):
-                df[f'diff_{feature_name}_{i}'] = grouped_data.diff(i)
+                new_features_df[f'diff_{feature_name}_{i}'] = grouped_data.diff(i)
 
-        return df
+        return new_features_df
 
     @staticmethod
     def _calculate_trend(x):
@@ -233,7 +206,7 @@ class TimeSeriesFeatureCreation:
 
         def process_group(group):
             group = group.sort_values(by=self.date_col)
-            trend_values = group[f'{feature_name}'].rolling(window=len(group), min_periods=2).apply(
+            trend_values = group[f'{feature_name}'].rolling(window=len(group), min_periods=1).apply(
                 lambda x: self._calculate_trend(x), raw=False)
             return group.index, trend_values
 
@@ -246,68 +219,83 @@ class TimeSeriesFeatureCreation:
     
     def _create_ewm_features_optimized(self, df, feature_name):
         """
-        Create exponentially weighted moving average features (optimized version).
-
-        Args:
-            df (pd.DataFrame): The input DataFrame. Assumed to be sorted by id_col and time/sequence.
-            feature_name (str): The name of the column to create EWM features for.
-
-        Returns:
-            pd.DataFrame: The DataFrame with added EWM features.
+        Create EWM features (optimized) and returns them in a new DataFrame.
         """
+        new_features_df = pd.DataFrame(index=df.index) # Ensure index alignment
         if not self.return_ewm:
-            return df # Return early if EWM features are not requested
+            return new_features_df # Return empty DataFrame if not requested
 
         if self.verbose:
             print(f'\tCreating ewm features for {feature_name} with span {self.span}')
 
+        # Ensure float type for EWM calculation
+        feature_series = df[feature_name].astype('float32')
+
         ewm_feature_name = f'ewm_{feature_name}_{self.span}'
         reverse_ewm_feature_name = f'reverse_ewm_{feature_name}_{self.span}'
 
-        # Group by the identifier column
-        grouped_data = df.groupby(self.id_col)[feature_name]
+        # Group by the identifier column on the original feature series
+        grouped_data = feature_series.groupby(df[self.id_col]) # Group the Series using original DF's ID
 
-        # Calculate forward EWM directly on the grouped series
-        df[ewm_feature_name] = grouped_data.ewm(
-            span=self.span, min_periods=3, adjust=True # adjust=True is default
-        ).mean().reset_index(level=0, drop=True) # reset_index aligns result back
+        # Calculate forward EWM
+        new_features_df[ewm_feature_name] = grouped_data.ewm(
+            span=self.span, min_periods=1, adjust=True
+        ).mean().reset_index(level=0, drop=True)
 
-        # Calculate reverse EWM using transform to handle the reversal within each group
-        # This is often clearer than trying to reverse the entire grouped object externally
-        df[reverse_ewm_feature_name] = grouped_data.transform(
-            lambda x: x[::-1].ewm(span=self.span, min_periods=3).mean()[::-1]
+        # Calculate reverse EWM using transform
+        new_features_df[reverse_ewm_feature_name] = grouped_data.transform(
+            lambda x: x[::-1].ewm(span=self.span, min_periods=1).mean()[::-1]
         )
 
-        return df
+        return new_features_df
 
     
     def _preprocess_dataframe(self, df):
-        '''Applies all preprocessing steps to a dataframe.'''
-        
-        df = df.copy()
-        df[self.date_col] = pd.to_datetime(df[self.date_col])
-        if self.features is None:
-            cols = df.drop(columns = [self.id_col, self.date_col]).columns
-            self.features = cols.tolist()
-        df_gb = df.groupby([self.date_col, self.id_col])[self.features].sum().reset_index()
-        print(type(df_gb))
+        '''Applies all preprocessing steps to a dataframe using optimized concatenation.'''
 
-        for feature_name in tqdm.tqdm(self.features, desc = 'Creating time series features for each feature', total = len(df_gb.columns)):
+        df_original = df.copy() # Keep original untouched until the end
+        df_original[self.date_col] = pd.to_datetime(df_original[self.date_col])
+
+        if self.features is None:
+            cols = df_original.drop(columns = [self.id_col, self.date_col]).columns
+            self.features = cols.tolist()
+
+        # Aggregate the initial DataFrame
+        df_gb = df_original.groupby([self.date_col, self.id_col])[self.features].sum().reset_index()
+        print(f"Aggregated DataFrame type: {type(df_gb)}")
+
+        # List to hold DataFrames of new features
+        all_new_features_dfs = []
+
+        # Sort df_gb ensures consistent order for group operations (important for rolling, diff, etc.)
+        # Use sort_values instead of relying on groupby order if necessary, although groupby usually sorts.
+        df_gb = df_gb.sort_values(by=[self.id_col, self.date_col]).reset_index(drop=True)
+
+
+        for feature_name in tqdm.tqdm(self.features, desc = 'Creating time series features for each feature', total = len(self.features)): # Use self.features here
             if self.verbose:
                 print(f'Creating features for {feature_name}')
-            df_gb = self._create_lag_features(df_gb, feature_name)
-            df_gb = self._create_cumulative_features(df_gb, feature_name)
-            df_gb = self._create_expanding_window_features(df_gb, feature_name)
-            df_gb = self._create_time_differencing_optimized(df_gb, feature_name)
-            # # df_gb = self._create_trend_features(df_gb, feature_name)
-            # df_gb = self._create_trend_features_rolling(df_gb, feature_name)
-            df_gb = self._create_rolling_window_features_optimized(df_gb, feature_name)
-            df_gb = self._create_ewm_features_optimized(df_gb, feature_name)
 
-        # df_gb = self._create_time_based_features(df_gb)
-        # df_gb = self._encode_categorical_columns(df_gb, categorical_columns = self.categorical_columns)
+            # Collect new features from each method
+            all_new_features_dfs.append(self._create_lag_features(df_gb, feature_name))
+            all_new_features_dfs.append(self._create_cumulative_features(df_gb, feature_name))
+            all_new_features_dfs.append(self._create_expanding_window_features(df_gb, feature_name))
+            all_new_features_dfs.append(self._create_time_differencing_optimized(df_gb, feature_name))
+            # all_new_features_dfs.append(self._create_trend_features_rolling(df_gb.copy(), feature_name)) # Pass a copy to avoid modifying df_gb in place if method isn't fully refactored
+            all_new_features_dfs.append(self._create_rolling_window_features_optimized(df_gb, feature_name))
+            all_new_features_dfs.append(self._create_ewm_features_optimized(df_gb, feature_name))
+
+
+        # Concatenate all new features at once
+        print(f"Concatenating {len(all_new_features_dfs)} feature DataFrames.")
+        df_gb = pd.concat([df_gb] + all_new_features_dfs, axis=1)
+
+        # Drop rows with nulls if requested
         if self.drop_null_rows:
+            print(f"Shape before dropping NaNs: {df_gb.shape}")
             df_gb = df_gb.dropna(axis=0)
+            print(f"Shape after dropping NaNs: {df_gb.shape}")
+
         return df_gb
 
     def fit(self, X, y=None):
