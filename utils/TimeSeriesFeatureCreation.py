@@ -77,12 +77,6 @@ class TimeSeriesFeatureCreation:
         for i in range(1, self.num_lags + 1):
             new_features_df[f'lag_{feature_name}_{i}'] = grouped_data.shift(i)
         return new_features_df
-    
-    def _groupby_df(self, df):
-        '''Groups the dataframe by the given feature list.'''
-        df[self.date_col] = pd.to_datetime(df[self.date_col])
-        df_gb = df.groupby([self.date_col, self.id_col])[[self.features]].sum().reset_index()
-        return df_gb
         
     def _create_rolling_window_features_optimized(self, df, feature_name):
         """
@@ -145,21 +139,6 @@ class TimeSeriesFeatureCreation:
             if self.return_max:
                 new_features_df[f'expanding_max_{feature_name}'] = grouped_data.cummax()
         return new_features_df
-
-    def _create_time_differencing(self, df, feature_name):
-        if self.verbose:
-            print(f'\tCreating time differencing features for {feature_name}')
-        '''Creates difference features for a given feature.'''
-        if self.use_non_lag:
-            if self.create_2_diff:
-                df[f'diff_{feature_name}'] = df.groupby([self.id_col])[f'{feature_name}'].diff()
-                df[f'diff_{feature_name}_{self.time_window_size}'] = (
-                    df.groupby([self.id_col])[f'{feature_name}'].diff(self.time_window_size)
-                )
-            else:
-                for i in range(self.time_window_size):
-                    df[f'diff_{feature_name}_{i+1}'] = df.groupby([self.id_col])[f'{feature_name}'].diff(i+1)
-        return df
     
     def _create_time_differencing_optimized(self, df, feature_name):
         """
@@ -183,39 +162,6 @@ class TimeSeriesFeatureCreation:
                 new_features_df[f'diff_{feature_name}_{i}'] = grouped_data.diff(i)
 
         return new_features_df
-
-    @staticmethod
-    def _calculate_trend(x):
-        """
-        Calculates the trend of a pandas Series.
-        """
-        x = x.dropna()  # Drop null values
-        if len(x) < 2:
-            return np.nan  # Not enough data to calculate trend
-        X = np.arange(len(x))
-        y = x.values
-        slope, _ = np.polyfit(X, y, 1)
-        return slope
-
-    def _create_trend_features_rolling(self, df, feature_name):
-        """
-        Create trend features for a given feature.
-        """
-        trend_feature_name = f'trend_{feature_name}_rolling'
-        df[trend_feature_name] = np.nan
-
-        def process_group(group):
-            group = group.sort_values(by=self.date_col)
-            trend_values = group[f'{feature_name}'].rolling(window=len(group), min_periods=1).apply(
-                lambda x: self._calculate_trend(x), raw=False)
-            return group.index, trend_values
-
-        results = Parallel(n_jobs=-1)(delayed(process_group)(group) for key, group in df.groupby([self.id_col]))
-
-        for index, trend_values in results:
-            df.loc[index, trend_feature_name] = trend_values
-
-        return df
     
     def _create_ewm_features_optimized(self, df, feature_name):
         """
