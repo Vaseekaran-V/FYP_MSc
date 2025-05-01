@@ -3,17 +3,17 @@ import pandas as pd
 from pipeline import run_pipeline
 
 def main():
-    st.title("Data Processing and Prediction App")
+    st.title("Credit Default Prediction")
     
     st.sidebar.header("Upload Dataset")
-    uploaded_file = st.sidebar.file_uploader("Choose a file", type=["parquet", "csv"])
+    uploaded_file = st.sidebar.file_uploader("Choose a file", type=["parquet"])
     
     if uploaded_file is not None:
         # Load the dataset
         if uploaded_file.name.endswith('.parquet'):
             df = pd.read_parquet(uploaded_file)
-        else:
-            df = pd.read_csv(uploaded_file)
+        # else:
+        #     df = pd.read_csv(uploaded_file)
         
         st.write("Data Preview:")
         st.dataframe(df.head())

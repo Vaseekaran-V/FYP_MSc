@@ -108,6 +108,7 @@ def create_ts_features(df, imp_cols_path, ts_feat_imp_path, select_date = '2018-
     ts_creator = TimeSeriesFeatureCreation(create_2_diff=False, verbose = False, id_col='customer_ID', date_col = 'end_of_month',
                                        rolling_window_size=6, span = 6, num_lags=3)
     
+
     cols_to_append = get_imp_cols_append(imp_cols_path)
 
     df = ts_creator.transform(df[cols_to_append])
@@ -157,10 +158,17 @@ def create_tsfel_features(df, imp_cols_path, stat_select_path, temporal_select_p
     temporal_select_cols = temporal_select[temporal_select['Importance'] == 1]['Feature'].values
 
     tsfel_cols = np.append(stat_select_cols, temporal_select_cols)
-    df_tsfel = df_tsfel[tsfel_cols]
-    df_tsfel.reset_index(drop=False, inplace=True)
-    
-    df_tsfel = df_tsfel.fillna(0)
+
+    # Check if any features were created
+    if df_tsfel.empty:
+        # Create an empty DataFrame with the required columns and fill with zeros
+        df_tsfel = pd.DataFrame(0, index=[0], columns=tsfel_cols)
+        df_tsfel['customer_ID'] = df['customer_ID'].unique()[0]
+
+    else:
+        df_tsfel = df_tsfel[tsfel_cols]
+        df_tsfel.reset_index(drop=False, inplace=True)
+        df_tsfel = df_tsfel.fillna(0)
 
     return df_tsfel
     
